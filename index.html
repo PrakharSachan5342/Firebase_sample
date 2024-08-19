@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armstrong Number Checker</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            filter: brightness(50%);
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 2s ease-out;
+        }
+
+        button:hover {
+            background-color: #ff784e;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ffcc00;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop class="video-background">
+        <source src="https://cdn.pixabay.com/video/2020/11/17/56628-480637224_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Container -->
+    <div class="container">
+        <h2>Armstrong Number Checker</h2>
+        <input type="number" id="numberInput" placeholder="Enter a number">
+        <button onclick="checkArmstrong()">Check</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkArmstrong() {
+            const number = parseInt(document.getElementById('numberInput').value);
+            let sum = 0;
+            const digits = number.toString().split('').map(Number);
+            const power = digits.length;
+
+            digits.forEach(digit => {
+                sum += Math.pow(digit, power);
+            });
+
+            const resultDiv = document.getElementById('result');
+            if (sum === number) {
+                resultDiv.innerHTML = `${number} is an Armstrong number!`;
+            } else {
+                resultDiv.innerHTML = `${number} is not an Armstrong number.`;
+            }
+        }
+    </script>
+</body>
+</html>
